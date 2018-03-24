@@ -47,18 +47,7 @@ int main(int argc, char * argv[])
         }
 
         // Проверка что а положительное число
-        if(a <= 0) {
-            throw std::out_of_range("a must be positive");
-        }
 
-        // Проверка что b положительное число
-        if(b <= 0) {
-            throw std::out_of_range("b must be positive");
-        }
-
-        if(a>=b){
-            std::cerr <<"Число A больше B ";
-        }
 
         showData(a,b);
         return no_error;
