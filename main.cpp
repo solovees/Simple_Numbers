@@ -37,6 +37,11 @@ int main(int argc, char * argv[])
             throw std::invalid_argument("a must be an integer");
         }
 
+        // Проверка вводимых данных на то что это числа
+        if(bstr.fail() || !bstr.eof()) {
+            throw std::invalid_argument("b must be an integer");
+        }
+
         // Проверка что а положительное число
         if(a <= 0) {
             throw std::out_of_range("a must be positive");
