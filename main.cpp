@@ -15,6 +15,15 @@ void showData(int a, int b){
 
 int main(int argc, char * argv[])
 {
+    std::istrstream astr(argv[1]); // создание первого потока
+    int a;
+    astr >> a;
+
+
+
+    std::istrstream bstr(argv[2]); // создание второго потока
+    int b;
+    bstr>>b;
 
     try{
         //Исключение недостаточного количесвто аргументов коммандной строки
@@ -22,15 +31,6 @@ int main(int argc, char * argv[])
             throw std::length_error("not enough parameters");
         }
 
-        std::istrstream astr(argv[1]); // создание первого потока
-        int a;
-        astr >> a;
-
-
-
-        std::istrstream bstr(argv[2]); // создание второго потока
-        int b;
-        bstr>>b;
 
         // Проверка вводимых данных на то что это числа
         if(astr.fail() || !astr.eof()) {
@@ -51,11 +51,13 @@ int main(int argc, char * argv[])
             std::cerr <<"Число A больше B ";
         }
 
-        return 0;
+
     }
 
     catch (std::exception const & e) {
     std::cerr << e.what() << std::endl;
     return 1;
-}
+    }
+    showData(a,b);
+    return 0;
 }
