@@ -1,6 +1,7 @@
 #include <iostream>
 #include <strstream>
 #include <lab3_prost.h>
+#include <stdexcept>
 
 using namespace std;
 
@@ -21,47 +22,48 @@ enum error_code {
 
 int main(int argc, char * argv[])
 {
-
-
-
-    if(argc != 3) {
-        std::cerr <<"Количество параметров командной строки меньше допустимого";
-        return not_enough_arguments;
-    }
-
     std::istrstream astr(argv[1]); // создание первого потока
     int a;
     astr >> a;
-    if(astr.fail()) {
-        std::cerr << "Недопустимое значение A";
-        return invalid_type ;
-    }
 
     std::istrstream bstr(argv[2]); // создание второго потока
     int b;
     bstr>>b;
 
-    if(astr.fail()) {
-        std::cerr << "Недопустимое значение B";
-        return invalid_value;
+    try{
+        //Исключение недостаточного количесвто аргументов коммандной строки
+        if(argc < 3) {
+            throw std::length_error("not enough parameters");
+        }
+
+        // Проверка вводимых данных на то что это числа
+        if(astr.fail() || !astr.eof()) {
+            throw std::invalid_argument("a must be an integer");
+        }
+
+        // Проверка вводимых данных на то что это числа
+        if(bstr.fail() || !bstr.eof()) {
+            throw std::invalid_argument("b must be an integer");
+        }
+
+        // Проверка что а положительное число
+        if(a <= 0) {
+            throw std::out_of_range("a must be positive");
+        }
+
+        // Проверка что b положительное число
+        if(b <= 0) {
+            throw std::out_of_range("b must be positive");
+        }
+
+        if(a>=b){
+            std::cerr <<"Число A больше B ";
+        }
+
+        showData(a,b);
+        return no_error;
+    } catch (std::exception const & e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
     }
-
-
-    if(a>=b){
-        std::cerr <<"Число A больше B ";
-    }
-
-
-    if(a<=0){
-        std::cerr <<"Число A отрицаетльное или ноль";
-    }
-
-
-    if(b<=0){
-        std::cerr <<"Число B отрицательное или ноль";
-    }
-
-
-    showData(a,b);
-    return no_error;
 }
