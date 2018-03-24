@@ -37,23 +37,19 @@ int main(int argc, char * argv[])
             throw std::invalid_argument("a must be an integer");
         }
 
+        // Проверка что а положительное число
+        if(a <= 0) {
+            throw std::out_of_range("a must be positive");
+        }
+
+        // Проверка что b положительное число
+        if(b <= 0) {
+            throw std::out_of_range("b must be positive");
+        }
 
         if(a>=b){
             std::cerr <<"Число A больше B ";
         }
-
-
-        if(a<=0){
-            std::cerr <<"Число A отрицаетльное или ноль";
-        }
-
-
-        if(b<=0){
-            std::cerr <<"Число B отрицательное или ноль";
-        }
-
-
-
 
         return 0;
     }
