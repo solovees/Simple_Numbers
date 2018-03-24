@@ -25,18 +25,16 @@ int main(int argc, char * argv[])
         std::istrstream astr(argv[1]); // создание первого потока
         int a;
         astr >> a;
-        if(astr.fail()) {
-            std::cerr << "Недопустимое значение A";
-            return 3;
-        }
+
+
 
         std::istrstream bstr(argv[2]); // создание второго потока
         int b;
         bstr>>b;
 
-        if(astr.fail()) {
-            std::cerr << "Недопустимое значение B";
-            return 4;
+        // Проверка вводимых данных на то что это числа
+        if(astr.fail() || !astr.eof()) {
+            throw std::invalid_argument("a must be an integer");
         }
 
 
