@@ -17,10 +17,9 @@ int main(int argc, char * argv[])
 {
 
     try{
-
-        if(argc != 3) {
-            std::cerr <<"Количество параметров командной строки меньше допустимого";
-            return 2;
+        //Исключение недостаточного количесвто аргументов коммандной строки
+        if(argc < 3) {
+            throw std::length_error("not enough parameters");
         }
 
         std::istrstream astr(argv[1]); // создание первого потока
