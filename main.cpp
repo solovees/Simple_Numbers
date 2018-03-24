@@ -12,16 +12,21 @@ void showData(int a, int b){
     }
 }
 
+enum error_code {
+    no_error = 0,
+    not_enough_arguments = 1,
+    invalid_type = 2,
+    invalid_value = 3
+};
+
 int main(int argc, char * argv[])
 {
- /*   int a = atoi(argv[1]);            // функция atoi строку преобразует в число
-      int b = atoi(argv[2]);
-      showData(a,b);  */
+
 
 
     if(argc != 3) {
         std::cerr <<"Количество параметров командной строки меньше допустимого";
-        return 2;
+        return not_enough_arguments;
     }
 
     std::istrstream astr(argv[1]); // создание первого потока
@@ -29,7 +34,7 @@ int main(int argc, char * argv[])
     astr >> a;
     if(astr.fail()) {
         std::cerr << "Недопустимое значение A";
-        return 3;
+        return invalid_type ;
     }
 
     std::istrstream bstr(argv[2]); // создание второго потока
@@ -38,7 +43,7 @@ int main(int argc, char * argv[])
 
     if(astr.fail()) {
         std::cerr << "Недопустимое значение B";
-        return 4;
+        return invalid_value;
     }
 
 
@@ -57,6 +62,6 @@ int main(int argc, char * argv[])
     }
 
 
-
-    return 0;
+    showData(a,b);
+    return no_error;
 }
