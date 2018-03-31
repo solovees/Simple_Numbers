@@ -18,3 +18,6 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../Lab3_
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../Lab3_library/build-lab3_prost-Desktop_Qt_5_9_1_MinGW_32bit-Debug/release/lab3_prost.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../Lab3_library/build-lab3_prost-Desktop_Qt_5_9_1_MinGW_32bit-Debug/debug/lab3_prost.lib
 else:unix: PRE_TARGETDEPS += $$PWD/../../Lab3_library/build-lab3_prost-Desktop_Qt_5_9_1_MinGW_32bit-Debug/liblab3_prost.a
+
+DISTFILES += \
+    .astylerc
